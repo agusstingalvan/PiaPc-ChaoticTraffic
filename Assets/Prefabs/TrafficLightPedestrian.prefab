@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 2939236475892267086}
   - component: {fileID: 8499844785892880213}
   - component: {fileID: 6538596042712505286}
+  - component: {fileID: 3053771234916777594}
+  - component: {fileID: 4448809685501954836}
   m_Layer: 0
-  m_Name: stick
+  m_Name: stickPedestrian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,6 +99,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3053771234916777594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637949919250539430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63d5e5f66192a64fbe05873383c185d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4448809685501954836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637949919250539430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a214278254731104a84d3ad185aa0d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7971553060336164043
 GameObject:
   m_ObjectHideFlags: 0
