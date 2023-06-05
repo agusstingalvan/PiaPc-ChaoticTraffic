@@ -35,7 +35,6 @@ public class VehicleAIController : MonoBehaviour
             }
         }
 
-        DetectDirection();
 
     }
 

@@ -16,7 +16,6 @@ public class VehicleStateManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("En la state manager de vehiculo");
         agent = GetComponent<NavMeshAgent>();
 
         _currentState = _stateGoing;
