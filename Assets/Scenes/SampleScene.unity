@@ -693,6 +693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5225027220990470622, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
+      propertyPath: m_TagString
+      value: Vehicle
+      objectReference: {fileID: 0}
     - target: {fileID: 5986294680868763307, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -878,6 +882,10 @@ PrefabInstance:
       objectReference: {fileID: 1813282715}
     - target: {fileID: 5225027220990470622, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
       propertyPath: m_Name
+      value: Vehicle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225027220990470622, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
+      propertyPath: m_TagString
       value: Vehicle
       objectReference: {fileID: 0}
     - target: {fileID: 5986294680868763307, guid: 4afc45555adc6364d968eaff442dea65, type: 3}

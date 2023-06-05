@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Waypoint
   - TrafficLight
+  - Vehicle
   layers:
   - Default
   - TransparentFX
