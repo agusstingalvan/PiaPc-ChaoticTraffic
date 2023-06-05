@@ -6,7 +6,9 @@ public class VehicleStateWaiting : VehicleBaseState
 {
     public override void EnterState(VehicleStateManager vehicleStateManager)
     {
-
+        type = "waiting";
+        vehicleStateManager.agent.isStopped = true;
+        vehicleStateManager.agent.speed = 3.5f;
     }
     public override void UpdateState(VehicleStateManager vehicleStateManager)
     {

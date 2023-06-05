@@ -7,7 +7,7 @@ public class TrafficLightStateYellow : TrafficLightBase
     private float time = 0;
     public override void EnterState(TrafficLightStateManager lightStateMachine)
     {
-        Debug.Log("State Yellow");
+        type = "yellow";
         time = 0;
         lightStateMachine.GetComponent<MeshRenderer>().material.color = Color.yellow;
     }

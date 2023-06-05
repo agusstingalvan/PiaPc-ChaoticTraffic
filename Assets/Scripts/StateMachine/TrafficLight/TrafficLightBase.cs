@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class TrafficLightBase
 {
+    public string type = "";
     public abstract void EnterState(TrafficLightStateManager lightStateMachine);
 
     public abstract void UpdateState(TrafficLightStateManager lightStateMachine);

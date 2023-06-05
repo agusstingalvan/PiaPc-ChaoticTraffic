@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class VehicleBaseState
 {
+    public string type = "";
     public abstract void EnterState(VehicleStateManager vehicleStateManager);
     public abstract void UpdateState(VehicleStateManager vehicleStateManager);
 

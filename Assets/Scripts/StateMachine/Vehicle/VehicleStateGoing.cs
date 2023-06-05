@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class VehicleStateGoing : VehicleBaseState
 {
-    public override void EnterState(VehicleStateManager vehicleStateManager) { 
-        
+    public override void EnterState(VehicleStateManager vehicleStateManager) {
+        type = "going";
+        vehicleStateManager.agent.isStopped = false;
+        vehicleStateManager.agent.speed = 3.5f;
     }
     public override void UpdateState(VehicleStateManager vehicleStateManager){
     

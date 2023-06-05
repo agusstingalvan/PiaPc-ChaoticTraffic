@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class VehicleAIController : MonoBehaviour
 {
-    VehicleStateManager _stateManager;
+    //VehicleStateManager _stateManager;
 
 
     [SerializeField] Waypoint [] _waypoints;
@@ -13,7 +13,7 @@ public class VehicleAIController : MonoBehaviour
     NavMeshAgent _agent;
     void Start()
     {
-        _stateManager = new VehicleStateManager();
+        //_stateManager = new VehicleStateManager();
         _agent = GetComponent<NavMeshAgent>();
         nextWaypoint = 0;
 

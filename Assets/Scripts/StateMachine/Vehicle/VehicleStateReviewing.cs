@@ -6,7 +6,9 @@ public class VehicleStateReviewing : VehicleBaseState
 {
     public override void EnterState(VehicleStateManager vehicleStateManager)
     {
-
+        type = "reviewing";
+        vehicleStateManager.agent.isStopped = false;
+        vehicleStateManager.agent.speed = 1.5f;
     }
     public override void UpdateState(VehicleStateManager vehicleStateManager)
     {
