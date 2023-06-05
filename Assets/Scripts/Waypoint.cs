@@ -7,6 +7,9 @@ public class Waypoint : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     public bool visited;
+    [SerializeField]
+    //The values can be : north, east, west, sourth. All in minuscule
+    public string address; 
     void Start()
     {
         visited = false;

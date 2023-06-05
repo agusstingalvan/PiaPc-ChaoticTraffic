@@ -10,15 +10,17 @@ public class VehicleAIController : MonoBehaviour
 
     [SerializeField] Waypoint [] _waypoints;
     int nextWaypoint;
+    Transform _target;
     NavMeshAgent _agent;
+    [SerializeField]
+    string initialDirection;
+    string _currentDirection;
     void Start()
     {
-        //_stateManager = new VehicleStateManager();
         _agent = GetComponent<NavMeshAgent>();
         nextWaypoint = 0;
 
-        GameObject.Find("Vehicle").transform.Find("arrowLeft").gameObject.SetActive(false);
-        GameObject.Find("Vehicle").transform.Find("arrowRight").gameObject.SetActive(false);
+        DetectAdrress(gameObject.name, false, false);
     }
 
     // Update is called once per frame
@@ -28,64 +30,64 @@ public class VehicleAIController : MonoBehaviour
         {
             if (!_waypoints[i].visited && _agent.remainingDistance <= _agent.stoppingDistance && !_agent.pathPending)
             {
-                Transform _target = _waypoints[i].GetComponent<Transform>();
+                _target = _waypoints[i].GetComponent<Transform>();
                 _agent.SetDestination(_target.position);
                 _waypoints[i].visited = true;
                 nextWaypoint = i;
+
+                //Log in console for alert the player, Which is your destination
+                _currentDirection = _target.GetComponent<Waypoint>().address.ToString();
+
+                // Verifica el ángulo para determinar la dirección de giro
+
+                if(initialDirection == "sourth" && _currentDirection == "east" || initialDirection == "west" && _currentDirection == "sourth" || initialDirection == "north" && _currentDirection == "west" || initialDirection == "east" && _currentDirection == "north")
+                {
+                    //gira a la derecha
+                    DetectAdrress(gameObject.name, false, true);
+                }else if (initialDirection == "sourth" && _currentDirection == "west" || initialDirection == "west" && _currentDirection == "north" || initialDirection == "north" && _currentDirection == "east" || initialDirection == "east" && _currentDirection == "sourth")
+                {
+                    //gira a la izquierda
+                    DetectAdrress(gameObject.name, true, false);
+                }
+                else
+                {
+                    //gira a la izquierda
+                    DetectAdrress(gameObject.name, false, false);
+                }
             }
         }
 
 
     }
 
-    void DetectDirection()
+
+    void DetectAdrress(string name, bool left, bool right)
     {
-        Vector3 forward = transform.forward;
-
-        // Obtener la dirección hacia el siguiente waypoint
-        Vector3 toWaypoint = _waypoints[nextWaypoint].GetComponent<Transform>().position - transform.position;
-
-        // Calcular el producto cruzado entre forward y toWaypoint
-        float crossProduct = Vector3.Cross(forward, toWaypoint).y;
-
-        if (crossProduct > 0)
+        if(!left && !right)
         {
-            //Debug.Log("El auto está doblando a la derecha");
-            GameObject.Find("Vehicle").transform.Find("arrowLeft").gameObject.SetActive(false);
-            GameObject.Find("Vehicle").transform.Find("arrowRight").gameObject.SetActive(true);
-        }
-        else if (crossProduct < 0)
-        {
-            //Debug.Log("El auto está doblando a la izquierda");
-            GameObject.Find("Vehicle").transform.Find("arrowLeft").gameObject.SetActive(true);
-            GameObject.Find("Vehicle").transform.Find("arrowRight").gameObject.SetActive(false);
+            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(false);
+            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(false);
         }
         else
         {
-            //Debug.Log("El auto va en línea recta (no está doblando)");
-            GameObject.Find("Vehicle").transform.Find("arrowLeft").gameObject.SetActive(false);
-            GameObject.Find("Vehicle").transform.Find("arrowRight").gameObject.SetActive(false);
+            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(left);
+            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(right);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null) {
-            if(other.name == "stick" || other.tag == "Waypoint")
-            {
-                //DetectDirection();
-            }
+        if (other != null && (other.name == "stick" || other.CompareTag("Waypoint"))) {
+            //if(other.name == "stick" || other.tag == "Waypoint")
+            //{
+            //    //DetectDirection();
+            //}
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other != null)
+        if (other != null && other.name == "stick")
         {
-            if (other.name == "stick")
-            {
-                //GameObject.Find("Vehicle").transform.Find("arrowLeft").gameObject.SetActive(false);
-                //GameObject.Find("Vehicle").transform.Find("arrowRight").gameObject.SetActive(false);
-            }
+            DetectAdrress(gameObject.name, false, false);
         }
     }
 }
