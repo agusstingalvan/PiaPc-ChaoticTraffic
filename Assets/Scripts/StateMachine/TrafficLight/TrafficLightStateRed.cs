@@ -6,7 +6,7 @@ public class TrafficLightStateRed : TrafficLightBase
 {
     public override void EnterState(TrafficLightStateManager lightStateMachine)
     {
-        Debug.Log("State Red");
+        type = "red";
         lightStateMachine.GetComponent<MeshRenderer>().material.color = Color.red;
     }
     public override void UpdateState(TrafficLightStateManager lightStateMachine)

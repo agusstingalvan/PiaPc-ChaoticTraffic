@@ -6,13 +6,11 @@ public class TrafficLightController : MonoBehaviour
 {
     TrafficLightStateManager _stateManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         _stateManager = GetComponent<TrafficLightStateManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
        
@@ -20,9 +18,9 @@ public class TrafficLightController : MonoBehaviour
     private void OnMouseDown()
     {
 
-        if (gameObject.name == "stick" && _stateManager._currentState == _stateManager.stateRed)
+        if (gameObject.name == "stick" && _stateManager._currentState.type == "red")
         {
-            Debug.Log("Clickkcckck left");
+            //Change initial status (Green for default)
             _stateManager._currentState = _stateManager.stateGreen;
             _stateManager._currentState.EnterState(_stateManager);
         }
