@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,48 +20,48 @@ public class VehicleAIController : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         nextWaypoint = 0;
-
         DetectAdrress(gameObject.name, false, false);
+        SelectRandomDestination();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < _waypoints.Length; i++)
-        {
-            if (!_waypoints[i].visited && _agent.remainingDistance <= _agent.stoppingDistance && !_agent.pathPending)
-            {
-                _target = _waypoints[i].GetComponent<Transform>();
-                _agent.SetDestination(_target.position);
-                _waypoints[i].visited = true;
-                nextWaypoint = i;
-
-                //Log in console for alert the player, Which is your destination
-                _currentDirection = _target.GetComponent<Waypoint>().address.ToString();
-
-                // Verifica el ángulo para determinar la dirección de giro
-
-                if(initialDirection == "sourth" && _currentDirection == "east" || initialDirection == "west" && _currentDirection == "sourth" || initialDirection == "north" && _currentDirection == "west" || initialDirection == "east" && _currentDirection == "north")
-                {
-                    //gira a la derecha
-                    DetectAdrress(gameObject.name, false, true);
-                }else if (initialDirection == "sourth" && _currentDirection == "west" || initialDirection == "west" && _currentDirection == "north" || initialDirection == "north" && _currentDirection == "east" || initialDirection == "east" && _currentDirection == "sourth")
-                {
-                    //gira a la izquierda
-                    DetectAdrress(gameObject.name, true, false);
-                }
-                else
-                {
-                    //gira a la izquierda
-                    DetectAdrress(gameObject.name, false, false);
-                }
-            }
-        }
-
-
     }
 
 
+    void SelectRandomDestination()
+    {
+        int indexRandom = Random.Range(0, _waypoints.Length);
+        _target = _waypoints[indexRandom].GetComponent<Transform>();
+        _agent.SetDestination(_target.position);
+        _waypoints[indexRandom].visited = true;
+
+        
+
+        //Log in console for alert the player, Which is your destination
+        _currentDirection = _target.GetComponent<Waypoint>().address.ToString();
+        Debug.Log(_currentDirection);
+
+        // Verifica el ángulo para determinar la dirección de giro
+
+        if (initialDirection == "sourth" && _currentDirection == "east" || initialDirection == "west" && _currentDirection == "sourth" || initialDirection == "north" && _currentDirection == "west" || initialDirection == "east" && _currentDirection == "north")
+        {
+            //gira a la derecha
+            DetectAdrress(gameObject.name, false, true);
+        }
+        else if (initialDirection == "sourth" && _currentDirection == "west" || initialDirection == "west" && _currentDirection == "north" || initialDirection == "north" && _currentDirection == "east" || initialDirection == "east" && _currentDirection == "sourth")
+        {
+            //gira a la izquierda
+            DetectAdrress(gameObject.name, true, false);
+        }
+        else
+        {
+            //gira a la izquierda
+            DetectAdrress(gameObject.name, false, false);
+        }
+
+    }
     void DetectAdrress(string name, bool left, bool right)
     {
         if(!left && !right)
@@ -74,6 +75,7 @@ public class VehicleAIController : MonoBehaviour
             GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(right);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && (other.name == "stick" || other.CompareTag("Waypoint"))) {
@@ -81,6 +83,16 @@ public class VehicleAIController : MonoBehaviour
             //{
             //    //DetectDirection();
             //}
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision != null && collision.gameObject.CompareTag("Vehicle"))
+        {
+            Debug.Log("Collision entre vehiculos, jugador pierde");
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+
         }
     }
     private void OnTriggerExit(Collider other)
