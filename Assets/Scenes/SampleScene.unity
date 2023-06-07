@@ -665,6 +665,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1431104379265641024, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
+      propertyPath: rotationY
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 4685703129932997168, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -978,6 +982,10 @@ PrefabInstance:
     - target: {fileID: 1431104379265641024, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
       propertyPath: time
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431104379265641024, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
+      propertyPath: rotationY
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1431104379265641024, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
       propertyPath: vehiclePrefab
