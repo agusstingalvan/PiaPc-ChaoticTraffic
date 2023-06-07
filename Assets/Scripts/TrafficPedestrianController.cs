@@ -22,7 +22,6 @@ public class TrafficPedestrianController : MonoBehaviour
            
         if (gameObject.name == "stickPedestrian" && _stateManager._currentState == _stateManager.stateRed)
         {
-         Debug.Log("Click PEDERATIAN left");
             _stateManager._currentState = _stateManager.stateGreen;
             _stateManager._currentState.EnterState(_stateManager);
         }
