@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class VehicleAIController : MonoBehaviour
 {
@@ -50,10 +51,7 @@ public class VehicleAIController : MonoBehaviour
     {
         if(collision != null && collision.gameObject.CompareTag("Vehicle"))
         {
-            Debug.Log("Collision entre vehiculos, jugador pierde");
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
-
+            SceneManager.LoadScene("GameOver");
         }
     }
     private void OnTriggerExit(Collider other)

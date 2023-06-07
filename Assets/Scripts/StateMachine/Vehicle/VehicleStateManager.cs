@@ -34,7 +34,6 @@ public class VehicleStateManager : MonoBehaviour
     {
         if (other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight") && canStop)
         {
-            Debug.Log("Hola");
             TrafficLightBase trafficLightState = other.GetComponent<TrafficLightStateManager>()._currentState;
             if (trafficLightState.type == "red")
             {
