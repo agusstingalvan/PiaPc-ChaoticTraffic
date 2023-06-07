@@ -27,6 +27,7 @@ public class SpawnVehicle : MonoBehaviour
     IEnumerator Spawn(int time)
     {
         yield return new WaitForSeconds(time);
+        
         Quaternion newRotation = Quaternion.Euler(0, rotationY, 0);
         Instantiate(vehiclePrefab, transform.position, newRotation);
 
