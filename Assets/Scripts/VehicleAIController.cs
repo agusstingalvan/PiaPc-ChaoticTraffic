@@ -13,13 +13,17 @@ public class VehicleAIController : MonoBehaviour
     int nextWaypoint;
     Transform _target;
     NavMeshAgent _agent;
+
     [SerializeField]
     string initialDirection;
     string _currentDirection;
+
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
         nextWaypoint = 0;
+
+        _agent = GetComponent<NavMeshAgent>();
+
         DetectAdrress(gameObject.name, false, false);
         SelectRandomDestination();
     }
@@ -30,51 +34,8 @@ public class VehicleAIController : MonoBehaviour
     }
 
 
-    void SelectRandomDestination()
-    {
-        int indexRandom = Random.Range(0, _waypoints.Length);
-        _target = _waypoints[indexRandom].GetComponent<Transform>();
-        _agent.SetDestination(_target.position);
-        _waypoints[indexRandom].visited = true;
-
-        
-
-        //Log in console for alert the player, Which is your destination
-        _currentDirection = _target.GetComponent<Waypoint>().address.ToString();
-        Debug.Log(_currentDirection);
-
-        // Verifica el ángulo para determinar la dirección de giro
-
-        if (initialDirection == "sourth" && _currentDirection == "east" || initialDirection == "west" && _currentDirection == "sourth" || initialDirection == "north" && _currentDirection == "west" || initialDirection == "east" && _currentDirection == "north")
-        {
-            //gira a la derecha
-            DetectAdrress(gameObject.name, false, true);
-        }
-        else if (initialDirection == "sourth" && _currentDirection == "west" || initialDirection == "west" && _currentDirection == "north" || initialDirection == "north" && _currentDirection == "east" || initialDirection == "east" && _currentDirection == "sourth")
-        {
-            //gira a la izquierda
-            DetectAdrress(gameObject.name, true, false);
-        }
-        else
-        {
-            //gira a la izquierda
-            DetectAdrress(gameObject.name, false, false);
-        }
-
-    }
-    void DetectAdrress(string name, bool left, bool right)
-    {
-        if(!left && !right)
-        {
-            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(false);
-            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(false);
-        }
-        else
-        {
-            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(left);
-            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(right);
-        }
-    }
+   
+  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -101,5 +62,53 @@ public class VehicleAIController : MonoBehaviour
         {
             DetectAdrress(gameObject.name, false, false);
         }
+    }
+
+
+    void DetectAdrress(string name, bool left, bool right)
+    {
+        if (!left && !right)
+        {
+            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(false);
+            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(false);
+        }
+        else
+        {
+            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(left);
+            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(right);
+        }
+    }
+
+    void SelectRandomDestination()
+    {
+        int indexRandom = Random.Range(0, _waypoints.Length);
+        _target = _waypoints[indexRandom].GetComponent<Transform>();
+        _agent.SetDestination(_target.position);
+        _waypoints[indexRandom].visited = true;
+
+
+
+        //Log in console for alert the player, Which is your destination
+        _currentDirection = _target.GetComponent<Waypoint>().address.ToString();
+        Debug.Log(_currentDirection);
+
+        // Verifica el ángulo para determinar la dirección de giro
+
+        if (initialDirection == "sourth" && _currentDirection == "east" || initialDirection == "west" && _currentDirection == "sourth" || initialDirection == "north" && _currentDirection == "west" || initialDirection == "east" && _currentDirection == "north")
+        {
+            //gira a la derecha
+            DetectAdrress(gameObject.name, false, true);
+        }
+        else if (initialDirection == "sourth" && _currentDirection == "west" || initialDirection == "west" && _currentDirection == "north" || initialDirection == "north" && _currentDirection == "east" || initialDirection == "east" && _currentDirection == "sourth")
+        {
+            //gira a la izquierda
+            DetectAdrress(gameObject.name, true, false);
+        }
+        else
+        {
+            //gira a la izquierda
+            DetectAdrress(gameObject.name, false, false);
+        }
+
     }
 }
