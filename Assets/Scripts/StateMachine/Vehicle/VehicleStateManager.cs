@@ -14,9 +14,12 @@ public class VehicleStateManager : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent agent;
 
+    bool canStop;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        canStop = true;
 
         _currentState = _stateGoing;
         _currentState.EnterState(this);
@@ -29,13 +32,16 @@ public class VehicleStateManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight"))
+        if (other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight") && canStop)
         {
+            Debug.Log("Hola");
             TrafficLightBase trafficLightState = other.GetComponent<TrafficLightStateManager>()._currentState;
             if (trafficLightState.type == "red")
             {
                 _currentState = _stateWaiting;
                 _currentState.EnterState(this);
+
+                canStop = false;
             }
         }
     }
