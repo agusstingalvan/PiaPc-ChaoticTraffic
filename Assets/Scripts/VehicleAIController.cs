@@ -49,7 +49,8 @@ public class VehicleAIController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision != null && collision.gameObject.CompareTag("Vehicle"))
+        string vehicleDirectionOfCollision = collision.gameObject.GetComponent<VehicleAIController>().initialDirection;
+        if(collision != null && collision.gameObject.CompareTag("Vehicle") && vehicleDirectionOfCollision != initialDirection)
         {
             SceneManager.LoadScene("GameOver");
         }

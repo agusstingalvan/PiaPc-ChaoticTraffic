@@ -31,6 +31,6 @@ public class SpawnVehicle : MonoBehaviour
         Quaternion newRotation = Quaternion.Euler(0, rotationY, 0);
         Instantiate(vehiclePrefab, transform.position, newRotation);
 
-        //StartCoroutine(Spawn(time));
+        StartCoroutine(Spawn(time));
     }
 }
