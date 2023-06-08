@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 2150218033338038668, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
       propertyPath: _waypoints.Array.data[1]
       value: 
-      objectReference: {fileID: 7253466318940554271, guid: 82d786e30e0d43940810a65134d2fec8, type: 3}
+      objectReference: {fileID: 5959372346024155472, guid: d59e302539ea5de478cb21bd970398ae, type: 3}
     - target: {fileID: 2150218033338038668, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
       propertyPath: _waypoints.Array.data[2]
       value: 

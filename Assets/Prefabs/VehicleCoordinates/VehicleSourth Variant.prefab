@@ -9,8 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2150218033338038668, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
       propertyPath: _waypoints.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2150218033338038668, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
+      propertyPath: _waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 5959372346024155472, guid: d59e302539ea5de478cb21bd970398ae, type: 3}
     - target: {fileID: 5225027220990470622, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
       propertyPath: m_Name
       value: VehicleSourth Variant
