@@ -32,6 +32,7 @@ public class VehicleAIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
 
@@ -41,18 +42,23 @@ public class VehicleAIController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && (other.name == "stick" || other.CompareTag("Waypoint"))) {
-            //if(other.name == "stick" || other.tag == "Waypoint")
-            //{
-            //    //DetectDirection();
-            //}
+
+        }
+
+        if (other != null && other.CompareTag("Waypoint") && other.GetComponent<Waypoint>().address == _currentDirection)
+        {
+            Destroy(gameObject);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        string vehicleDirectionOfCollision = collision.gameObject.GetComponent<VehicleAIController>().initialDirection;
-        if(collision != null && collision.gameObject.CompareTag("Vehicle") && vehicleDirectionOfCollision != initialDirection)
+        if (collision != null)
         {
-            SceneManager.LoadScene("GameOver");
+            if (collision.transform.CompareTag("Vehicle"))
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -68,13 +74,13 @@ public class VehicleAIController : MonoBehaviour
     {
         if (!left && !right)
         {
-            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(false);
-            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(false);
+            transform.Find("arrowLeft").gameObject.SetActive(false);
+            transform.Find("arrowRight").gameObject.SetActive(false);
         }
         else
         {
-            GameObject.Find(name).transform.Find("arrowLeft").gameObject.SetActive(left);
-            GameObject.Find(name).transform.Find("arrowRight").gameObject.SetActive(right);
+            transform.Find("arrowLeft").gameObject.SetActive(left);
+            transform.Find("arrowRight").gameObject.SetActive(right);
         }
     }
 

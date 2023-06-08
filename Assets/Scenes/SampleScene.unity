@@ -717,6 +717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnVehicles (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9153855478145491941, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
 --- !u!1 &2067907009
@@ -981,7 +985,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1431104379265641024, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
       propertyPath: time
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1431104379265641024, guid: d648d5a0c8ae9d64a823343ff9667f1c, type: 3}
       propertyPath: rotationY
