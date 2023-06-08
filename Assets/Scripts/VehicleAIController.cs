@@ -19,8 +19,6 @@ public class VehicleAIController : MonoBehaviour
     string initialDirection;
     string _currentDirection;
 
-    [SerializeField]
-    LayerMask layerMaskColider;
     void Start()
     {
         nextWaypoint = 0;
@@ -34,21 +32,8 @@ public class VehicleAIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 3f, layerMaskColider))
-        {
-            if (hit.collider.CompareTag("Vehicle"))
-            {
-                _agent.isStopped = true;
-            }
-        }
-        Debug.DrawRay(transform.position, transform.forward * 3f, Color.red); 
+        
     }
-
-
-   
-  
 
     private void OnTriggerEnter(Collider other)
     {

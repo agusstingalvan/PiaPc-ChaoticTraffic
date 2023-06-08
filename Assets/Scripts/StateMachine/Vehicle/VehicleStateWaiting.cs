@@ -12,7 +12,25 @@ public class VehicleStateWaiting : VehicleBaseState
     }
     public override void UpdateState(VehicleStateManager vehicleStateManager)
     {
+        if (vehicleStateManager.haveVehicleInFront != null)
+        {
+            float distanceToVehicle = Vector3.Distance(vehicleStateManager.transform.position, vehicleStateManager.haveVehicleInFront.position);
 
+            if (distanceToVehicle > vehicleStateManager.stopDistance)
+            {
+                // Reanudar la velocidad
+                vehicleStateManager.haveVehicleInFront = null;
+
+                vehicleStateManager._currentState = vehicleStateManager._stateGoing;
+                vehicleStateManager._currentState.EnterState(vehicleStateManager);
+            }
+            else
+            {
+                // Detener cambiando a waiting
+                vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
+                vehicleStateManager._currentState.EnterState(vehicleStateManager);
+            }
+        }
     }
 
     public override void OnTriggerEnter(VehicleStateManager vehicleStateManager, Collider other)

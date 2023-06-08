@@ -175,9 +175,6 @@ MonoBehaviour:
   - {fileID: 5959372346024155472, guid: d59e302539ea5de478cb21bd970398ae, type: 3}
   - {fileID: 2298857381129850181, guid: ae9d0ab1d5fbcae49859e3e6121d8b97, type: 3}
   initialDirection: sourth
-  layerMaskColider:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &1634486030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
+  canStop: 0
+  layerMaskCollider:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!54 &302681828
 Rigidbody:
   m_ObjectHideFlags: 0
