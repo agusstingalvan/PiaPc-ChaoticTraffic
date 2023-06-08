@@ -15,17 +15,32 @@ public class VehicleStateWaiting : VehicleBaseState
 
     }
 
-    public override void OnTriggerEnter(VehicleStateManager vehicleStateManager)
+    public override void OnTriggerEnter(VehicleStateManager vehicleStateManager, Collider other)
     {
 
     }
 
-    public override void OnTriggerStay(VehicleStateManager vehicleStateManager)
+    public override void OnTriggerStay(VehicleStateManager vehicleStateManager, Collider other)
     {
+        //Reanuda la marcha si detecta q es verde o amarrillo.
+        if (other != null && other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight"))
+        {
+            TrafficLightBase trafficLightState = other.GetComponent<TrafficLightStateManager>()._currentState;
+            if (trafficLightState.type == "green")
+            {
+                vehicleStateManager._currentState = vehicleStateManager._stateGoing;
+                vehicleStateManager._currentState.EnterState(vehicleStateManager);
+            }
+            else if (trafficLightState.type == "yellow")
+            {
+                vehicleStateManager._currentState = vehicleStateManager._stateReviewing;
+                vehicleStateManager._currentState.EnterState(vehicleStateManager);
+            }
 
+        }
     }
 
-    public override void OnTriggerExit(VehicleStateManager vehicleStateManager)
+    public override void OnTriggerExit(VehicleStateManager vehicleStateManager, Collider other)
     {
 
     }

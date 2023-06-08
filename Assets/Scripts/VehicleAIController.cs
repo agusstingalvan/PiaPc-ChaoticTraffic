@@ -19,6 +19,8 @@ public class VehicleAIController : MonoBehaviour
     string initialDirection;
     string _currentDirection;
 
+    [SerializeField]
+    LayerMask layerMaskColider;
     void Start()
     {
         nextWaypoint = 0;
@@ -32,7 +34,16 @@ public class VehicleAIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
 
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 3f, layerMaskColider))
+        {
+            if (hit.collider.CompareTag("Vehicle"))
+            {
+                _agent.isStopped = true;
+            }
+        }
+        Debug.DrawRay(transform.position, transform.forward * 3f, Color.red); 
     }
 
 
@@ -44,7 +55,7 @@ public class VehicleAIController : MonoBehaviour
         if (other != null && (other.name == "stick" || other.CompareTag("Waypoint"))) {
 
         }
-
+        //Si el jugador llega al waypoint
         if (other != null && other.CompareTag("Waypoint") && other.GetComponent<Waypoint>().address == _currentDirection)
         {
             Destroy(gameObject);
@@ -56,7 +67,7 @@ public class VehicleAIController : MonoBehaviour
         {
             if (collision.transform.CompareTag("Vehicle"))
             {
-                SceneManager.LoadScene("GameOver");
+                //SceneManager.LoadScene("GameOver");
             }
 
         }

@@ -6,15 +6,15 @@ using UnityEngine.AI;
 
 public class VehicleStateManager : MonoBehaviour
 {
-    VehicleBaseState _currentState;
-    VehicleStateGoing _stateGoing = new VehicleStateGoing();
-    VehicleStateReviewing _stateReviewing = new VehicleStateReviewing();
-    VehicleStateWaiting _stateWaiting = new VehicleStateWaiting();
+    public VehicleBaseState _currentState;
+    public VehicleStateGoing _stateGoing = new VehicleStateGoing();
+    public VehicleStateReviewing _stateReviewing = new VehicleStateReviewing();
+    public VehicleStateWaiting _stateWaiting = new VehicleStateWaiting();
 
     [HideInInspector]
     public NavMeshAgent agent;
 
-    bool canStop;
+    public bool canStop;
 
     void Start()
     {
@@ -32,46 +32,16 @@ public class VehicleStateManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight") && canStop)
-        {
-            TrafficLightBase trafficLightState = other.GetComponent<TrafficLightStateManager>()._currentState;
-            if (trafficLightState.type == "red")
-            {
-                _currentState = _stateWaiting;
-                _currentState.EnterState(this);
-
-                canStop = false;
-            }
-        }
+        _currentState.OnTriggerEnter(this, other);
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other != null && other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight"))
-        {
-            TrafficLightBase trafficLightState = other.GetComponent<TrafficLightStateManager>()._currentState;
-            if (trafficLightState.type == "green")
-            {
-                _currentState = _stateGoing;
-                _currentState.EnterState(this);
-            }else if(trafficLightState.type == "yellow")
-            {
-                _currentState = _stateReviewing;
-                _currentState.EnterState(this);
-            }
-
-        }
+        _currentState.OnTriggerStay(this, other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other != null && other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight"))
-        {
-            if (_currentState.type == "reviewing")
-            {
-                _currentState = _stateGoing;
-                _currentState.EnterState(this);
-            }
-
-        }
+        _currentState.OnTriggerExit(this, other);
+        
     }
 }

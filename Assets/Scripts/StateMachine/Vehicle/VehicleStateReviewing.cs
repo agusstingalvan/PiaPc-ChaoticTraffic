@@ -15,18 +15,27 @@ public class VehicleStateReviewing : VehicleBaseState
 
     }
 
-    public override void OnTriggerEnter(VehicleStateManager vehicleStateManager)
+    public override void OnTriggerEnter(VehicleStateManager vehicleStateManager, Collider other)
     {
 
     }
 
-    public override void OnTriggerStay(VehicleStateManager vehicleStateManager)
+    public override void OnTriggerStay(VehicleStateManager vehicleStateManager, Collider other)
     {
 
     }
 
-    public override void OnTriggerExit(VehicleStateManager vehicleStateManager)
+    public override void OnTriggerExit(VehicleStateManager vehicleStateManager, Collider other)
     {
-
+        //Si esta en reviewing y sale del trigger pasa a going
+        if (other != null && other.transform.parent != null && other.transform.parent.CompareTag("TrafficLight"))
+        {
+            if (vehicleStateManager._currentState.type == "reviewing")
+            {
+                Debug.Log("Saliendo");
+                vehicleStateManager._currentState = vehicleStateManager._stateGoing;
+                vehicleStateManager._currentState.EnterState(vehicleStateManager);
+            }
+        }
     }
 }
