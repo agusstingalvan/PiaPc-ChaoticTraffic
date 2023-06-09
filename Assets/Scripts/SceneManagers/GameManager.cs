@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         _uiManager.UpdateTime(time);
         if (time <= 0)
         {
-            SceneManager.LoadScene("Win");
+            SceneManager.LoadScene(3);
         }
         else
         {
