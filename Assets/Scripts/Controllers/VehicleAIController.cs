@@ -59,10 +59,15 @@ public class VehicleAIController : MonoBehaviour
             {
                 _gameManager.totalCrashes--;
                 _gameManager._uiManager.UpdateLives(_gameManager.totalCrashes);
+                Debug.Log("Colision");
                 if (_gameManager.totalCrashes == 0)
                 {
                     _gameManager.gameOver = true;
+                    return;
                 }
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+
             }
 
         }
@@ -101,7 +106,6 @@ public class VehicleAIController : MonoBehaviour
 
         //Log in console for alert the player, Which is your destination
         _currentDirection = _target.GetComponent<Waypoint>().address.ToString();
-        Debug.Log(_currentDirection);
 
         // Verifica el ángulo para determinar la dirección de giro
 
