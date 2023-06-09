@@ -17,13 +17,18 @@ public class VehicleAIController : MonoBehaviour
 
     [SerializeField]
     public string initialDirection;
+
     string _currentDirection;
+
+    GameManager _gameManager;
 
     void Start()
     {
         nextWaypoint = 0;
 
         _agent = GetComponent<NavMeshAgent>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
 
         DetectAdrress(gameObject.name, false, false);
         SelectRandomDestination();
@@ -52,7 +57,12 @@ public class VehicleAIController : MonoBehaviour
         {
             if (collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection)
             {
-                SceneManager.LoadScene("GameOver");
+                _gameManager.totalCrashes--;
+                _gameManager._uiManager.UpdateLives(_gameManager.totalCrashes);
+                if (_gameManager.totalCrashes == 0)
+                {
+                    _gameManager.gameOver = true;
+                }
             }
 
         }

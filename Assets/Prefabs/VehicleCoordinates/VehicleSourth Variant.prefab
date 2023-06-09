@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: _waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 8120879958988781148, guid: fa054f97208132142b550687cf01b7ee, type: 3}
+    - target: {fileID: 5092282621395778470, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3fa02dd883f87b478be8e5ceb05f4bc, type: 2}
     - target: {fileID: 5225027220990470622, guid: 4afc45555adc6364d968eaff442dea65, type: 3}
       propertyPath: m_Name
       value: VehicleSourth Variant
