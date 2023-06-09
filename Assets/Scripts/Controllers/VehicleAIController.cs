@@ -22,6 +22,9 @@ public class VehicleAIController : MonoBehaviour
 
     GameManager _gameManager;
 
+    [SerializeField]
+    public bool hasCollided = false;
+
     void Start()
     {
         nextWaypoint = 0;
@@ -53,13 +56,16 @@ public class VehicleAIController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null)
+        if (collision != null && !hasCollided)
         {
-            if (collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection)
+            if (collision != null && collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection)
             {
+                Debug.Log("Colision");
+                hasCollided = true;
+
                 _gameManager.totalCrashes--;
                 _gameManager._uiManager.UpdateLives(_gameManager.totalCrashes);
-                Debug.Log("Colision");
+                
                 if (_gameManager.totalCrashes == 0)
                 {
                     _gameManager.gameOver = true;
@@ -67,9 +73,7 @@ public class VehicleAIController : MonoBehaviour
                 }
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
-
             }
-
         }
     }
     private void OnTriggerExit(Collider other)

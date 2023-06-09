@@ -59,12 +59,13 @@ public class VehicleStateGoing : VehicleBaseState
             {
                 vehicleStateManager._currentState = vehicleStateManager._stateReviewing;
                 vehicleStateManager._currentState.EnterState(vehicleStateManager);
-            }else if (trafficLightState.type == "red")
-            {
-                vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
-                vehicleStateManager._currentState.EnterState(vehicleStateManager);
             }
-            //TODO:  OBLIGATORIO - Frena si detecta q es rojo
+            //else if (trafficLightState.type == "red")
+            //{
+            //    vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
+            //    vehicleStateManager._currentState.EnterState(vehicleStateManager);
+            //}
+            //ToDo:  OBLIGATORIO - Frena si detecta q es rojo
         }
     }
 
