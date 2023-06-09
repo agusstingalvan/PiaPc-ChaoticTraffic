@@ -13,12 +13,13 @@ public class VehicleStateGoing : VehicleBaseState
 
         //Detectar si hay vehiculo delante y guardar la referencias, para luego en el estado waiting, poder reanudar la marcha.
         RaycastHit hit;
-
+        
         if (Physics.Raycast(vehicleStateManager.transform.position, vehicleStateManager.transform.forward, out hit, 3f, vehicleStateManager.layerMaskCollider))
         {
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Vehicle"))
+                VehicleAIController controllerVehicleCollider = hit.collider.GetComponent<VehicleAIController>();
+                if (hit.collider.CompareTag("Vehicle") && vehicleStateManager._controller.initialDirection == controllerVehicleCollider.initialDirection)
                 {
                     // Detener el vehículo y guardar la referencia al vehículo del otro de adelante
                     vehicleStateManager.haveVehicleInFront = hit.collider.transform;

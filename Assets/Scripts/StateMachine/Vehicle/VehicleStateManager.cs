@@ -10,7 +10,7 @@ public class VehicleStateManager : MonoBehaviour
     public VehicleStateGoing _stateGoing = new VehicleStateGoing();
     public VehicleStateReviewing _stateReviewing = new VehicleStateReviewing();
     public VehicleStateWaiting _stateWaiting = new VehicleStateWaiting();
-
+    public VehicleAIController _controller;
     [SerializeField]
     public LayerMask layerMaskCollider;
 
@@ -27,7 +27,7 @@ public class VehicleStateManager : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
+        _controller = GetComponent<VehicleAIController>();
         canStop = true;
         stopDistance = 5f;
 

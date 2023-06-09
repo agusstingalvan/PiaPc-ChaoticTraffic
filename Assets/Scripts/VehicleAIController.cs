@@ -16,7 +16,7 @@ public class VehicleAIController : MonoBehaviour
     NavMeshAgent _agent;
 
     [SerializeField]
-    string initialDirection;
+    public string initialDirection;
     string _currentDirection;
 
     void Start()
