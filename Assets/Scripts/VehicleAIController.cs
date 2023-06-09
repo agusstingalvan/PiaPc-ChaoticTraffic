@@ -50,9 +50,9 @@ public class VehicleAIController : MonoBehaviour
     {
         if (collision != null)
         {
-            if (collision.transform.CompareTag("Vehicle"))
+            if (collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection)
             {
-                //SceneManager.LoadScene("GameOver");
+                SceneManager.LoadScene("GameOver");
             }
 
         }
