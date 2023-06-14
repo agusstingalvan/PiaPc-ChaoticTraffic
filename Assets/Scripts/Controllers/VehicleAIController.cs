@@ -24,7 +24,6 @@ public class VehicleAIController : MonoBehaviour
 
     [SerializeField]
     public bool hasCollided = false;
-
     void Start()
     {
         nextWaypoint = 0;
