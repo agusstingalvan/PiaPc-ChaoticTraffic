@@ -145,7 +145,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5225027220990470622}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.75
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -175,6 +175,7 @@ MonoBehaviour:
   - {fileID: 5959372346024155472, guid: d59e302539ea5de478cb21bd970398ae, type: 3}
   - {fileID: 2298857381129850181, guid: ae9d0ab1d5fbcae49859e3e6121d8b97, type: 3}
   initialDirection: sourth
+  hasCollided: 0
 --- !u!114 &1634486030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,11 +188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58c617fcb75d3747a9808c439b91a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  canStop: 0
+  _controller: {fileID: 0}
   layerMaskCollider:
     serializedVersion: 2
     m_Bits: 64
+  agent: {fileID: 0}
+  canStop: 0
+  stopDistance: 5
+  haveVehicleInFront: {fileID: 0}
 --- !u!54 &302681828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -204,9 +208,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!65 &2590099925928517797
 BoxCollider:

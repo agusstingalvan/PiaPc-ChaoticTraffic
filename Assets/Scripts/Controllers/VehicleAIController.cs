@@ -59,7 +59,6 @@ public class VehicleAIController : MonoBehaviour
         {
             if (collision != null && collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection)
             {
-                Debug.Log("Colision");
                 hasCollided = true;
 
                 _gameManager.totalCrashes--;
@@ -73,6 +72,12 @@ public class VehicleAIController : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
+        }
+
+        if(collision != null && collision.transform.CompareTag("Pedestrian"))
+        {
+            Debug.Log("Colision");
+            hasCollided = true;
         }
     }
     private void OnTriggerExit(Collider other)

@@ -6,7 +6,7 @@ public class TrafficPedestrianRed : TrafficPedestrianBase
 {
     public override void EnterState(TrafficPedestrianManager lightStateMachine)
     {
-        Debug.Log("State Pedestrian Red");
+        type = "red";
         lightStateMachine.GetComponent<MeshRenderer>().material.color = Color.red;
     }
     public override void UpdateState(TrafficPedestrianManager lightStateMachine)

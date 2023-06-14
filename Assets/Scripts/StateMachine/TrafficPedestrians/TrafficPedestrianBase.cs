@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class TrafficPedestrianBase 
 {
+    public string type = "";
     public abstract void EnterState(TrafficPedestrianManager lightStateMachine);
 
     public abstract void UpdateState(TrafficPedestrianManager lightStateMachine);
