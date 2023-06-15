@@ -9,6 +9,7 @@ TagManager:
   - Vehicle
   - TrafficLightPedestrian
   - Sidewalk
+  - Pedestrian
   layers:
   - Default
   - TransparentFX

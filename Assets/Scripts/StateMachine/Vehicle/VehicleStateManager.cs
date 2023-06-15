@@ -10,7 +10,10 @@ public class VehicleStateManager : MonoBehaviour
     public VehicleStateGoing _stateGoing = new VehicleStateGoing();
     public VehicleStateReviewing _stateReviewing = new VehicleStateReviewing();
     public VehicleStateWaiting _stateWaiting = new VehicleStateWaiting();
+    public VehicleStatePatience _statePatience = new VehicleStatePatience();
+
     public VehicleAIController _controller;
+
     [SerializeField]
     public LayerMask layerMaskCollider;
 
@@ -22,6 +25,7 @@ public class VehicleStateManager : MonoBehaviour
     [SerializeField]
     public float stopDistance = 5f;
     public Transform haveVehicleInFront;
+    public float timeForPatience = 10f;
 
 
     void Start()

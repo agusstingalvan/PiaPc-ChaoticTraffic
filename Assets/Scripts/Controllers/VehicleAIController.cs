@@ -21,7 +21,8 @@ public class VehicleAIController : MonoBehaviour
     string _currentDirection;
 
     GameManager _gameManager;
-
+    [HideInInspector]
+    public SpawnVehicle mySpawn;
     [SerializeField]
     public bool hasCollided = false;
     void Start()
@@ -44,22 +45,21 @@ public class VehicleAIController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null && (other.name == "stick" || other.CompareTag("Waypoint"))) {
-
-        }
         //Si el jugador llega al waypoint
         if (other != null && other.CompareTag("Waypoint") && other.GetComponent<Waypoint>().address == _currentDirection)
         {
+            GameObject.Find(mySpawn.name).GetComponent<SpawnVehicle>().countSpawnVehicles--;
+            GameObject.Find(mySpawn.name).GetComponent<SpawnVehicle>().vehicleInstanceReference = null;
             Destroy(gameObject);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null && !hasCollided)
+        if (collision != null)
         {
-            if (collision != null && collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection)
+            //Descuenta el vidas.
+            if (collision != null && collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection && !hasCollided)
             {
-                Debug.Log("Colision");
                 hasCollided = true;
 
                 _gameManager.totalCrashes--;
@@ -73,6 +73,26 @@ public class VehicleAIController : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
+            //Pierde el nivel
+            if (collision != null && collision.transform.CompareTag("Pedestrian") && !hasCollided)
+            {
+
+                _gameManager.totalCrashes = 0;
+                _gameManager._uiManager.UpdateLives(_gameManager.totalCrashes);
+
+                if (_gameManager.totalCrashes == 0)
+                {
+                    _gameManager.gameOver = true;
+                    return;
+                }
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+            }
+        }
+
+        if(collision != null && collision.transform.CompareTag("Pedestrian"))
+        {
+            hasCollided = true;
         }
     }
     private void OnTriggerExit(Collider other)

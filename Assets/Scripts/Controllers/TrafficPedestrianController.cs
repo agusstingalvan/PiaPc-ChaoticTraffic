@@ -19,7 +19,6 @@ public class TrafficPedestrianController : MonoBehaviour
     }
     private void OnMouseDown()
     {
-
         if (gameObject.name == "stickPedestrian" && _stateManager._currentState == _stateManager.stateRed)
         {
             _stateManager._currentState = _stateManager.stateGreen;

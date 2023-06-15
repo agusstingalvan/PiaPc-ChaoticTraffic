@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class VehicleStateWaiting : VehicleBaseState
 {
+    public float time;
     public override void EnterState(VehicleStateManager vehicleStateManager)
     {
         type = "waiting";
         vehicleStateManager.agent.isStopped = true;
-        vehicleStateManager.agent.speed = 3.5f;
+        vehicleStateManager.agent.speed = 0f;
+        time = 0;
     }
     public override void UpdateState(VehicleStateManager vehicleStateManager)
     {
+        //Si detecta un vehiculo alfrente:
         if (vehicleStateManager.haveVehicleInFront != null)
         {
             float distanceToVehicle = Vector3.Distance(vehicleStateManager.transform.position, vehicleStateManager.haveVehicleInFront.position);
@@ -30,6 +33,14 @@ public class VehicleStateWaiting : VehicleBaseState
                 vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
                 vehicleStateManager._currentState.EnterState(vehicleStateManager);
             }
+        }
+
+        time += Time.deltaTime;
+        if (time > 5f)
+        {
+            vehicleStateManager.transform.Find("conito").gameObject.SetActive(true);
+            //vehicleStateManager._currentState = vehicleStateManager._statePatience;
+            //vehicleStateManager._currentState.EnterState(vehicleStateManager);
         }
     }
 
