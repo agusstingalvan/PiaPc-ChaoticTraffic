@@ -9,8 +9,6 @@ public class PedestrianStatePatience : PedestrianBaseState
     {
         type = "patience";
         time = 0;
-        
-
     }
     public override void UpdateState(PedestrianStateManager pedestrianStateManager)
     {

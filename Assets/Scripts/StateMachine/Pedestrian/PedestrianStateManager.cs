@@ -9,7 +9,7 @@ public class PedestrianStateManager : MonoBehaviour
     public PedestrianStateGoing _stateGoing = new PedestrianStateGoing();
     public PedestrianStateWaiting _stateWaiting = new PedestrianStateWaiting();
     public PedestrianStatePatience _statePatience = new PedestrianStatePatience();
-
+    public bool isImpatient = false;
     [HideInInspector]
     public NavMeshAgent agent;
 
@@ -17,6 +17,7 @@ public class PedestrianStateManager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
+        
         _currentState = _stateGoing;
         _currentState.EnterState(this);
 

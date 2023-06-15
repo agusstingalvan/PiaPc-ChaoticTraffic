@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _uiManager.UpdateLives(totalCrashes);
         _uiManager.UpdateTime(time);
-
         StartCoroutine(Timer());
     }
 
@@ -38,7 +37,6 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("GameOver");
             return;
         }
-        
     }
     IEnumerator Timer()
     {
@@ -46,7 +44,10 @@ public class GameManager : MonoBehaviour
 
         time--;
         _uiManager.UpdateTime(time);
-        if (time <= 0)
+        if (time <= 0 && SceneManager.GetActiveScene().name == "Nivel1")
+        {
+            SceneManager.LoadScene("Nivel2");
+        }else if (time <= 0 && SceneManager.GetActiveScene().name == "Nivel2")
         {
             SceneManager.LoadScene("Win");
         }

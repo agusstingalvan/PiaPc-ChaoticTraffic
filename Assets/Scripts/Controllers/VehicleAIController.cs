@@ -55,9 +55,10 @@ public class VehicleAIController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null && !hasCollided)
+        if (collision != null)
         {
-            if (collision != null && collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection)
+            //Descuenta el vidas.
+            if (collision != null && collision.transform.CompareTag("Vehicle") && collision.transform.GetComponent<VehicleAIController>().initialDirection != initialDirection && !hasCollided)
             {
                 hasCollided = true;
 
@@ -72,7 +73,8 @@ public class VehicleAIController : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
-            if (collision != null && collision.transform.CompareTag("Pedestrian"))
+            //Pierde el nivel
+            if (collision != null && collision.transform.CompareTag("Pedestrian") && !hasCollided)
             {
 
                 _gameManager.totalCrashes = 0;

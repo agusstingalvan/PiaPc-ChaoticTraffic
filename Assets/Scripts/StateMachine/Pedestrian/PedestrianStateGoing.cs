@@ -9,7 +9,10 @@ public class PedestrianStateGoing : PedestrianBaseState
         type = "going";
         pedestrianStateManager.agent.isStopped = false;
         pedestrianStateManager.agent.speed = 3;
-        pedestrianStateManager.transform.GetComponentInChildren<MeshRenderer>().material.color = new Color(210f / 255f, 138f / 255f, 231f / 255f, 1f);
+
+        if (!pedestrianStateManager.isImpatient) {
+            pedestrianStateManager.transform.GetComponentInChildren<MeshRenderer>().material.color = new Color(210f / 255f, 138f / 255f, 231f / 255f, 1f); 
+        }
     }
     public override void UpdateState(PedestrianStateManager pedestrianStateManager)
     {
@@ -22,7 +25,7 @@ public class PedestrianStateGoing : PedestrianBaseState
         if(other.transform.parent != null && other.transform.parent.CompareTag("TrafficLightPedestrian"))
         {
             TrafficPedestrianBase trafficPedestrianState = other.GetComponent<TrafficPedestrianManager>()._currentState;
-            if(trafficPedestrianState.type == "red")
+            if(trafficPedestrianState.type == "red" && !pedestrianStateManager.isImpatient)
             {
                 pedestrianStateManager._currentState = pedestrianStateManager._stateWaiting;
                 pedestrianStateManager._currentState.EnterState(pedestrianStateManager);
