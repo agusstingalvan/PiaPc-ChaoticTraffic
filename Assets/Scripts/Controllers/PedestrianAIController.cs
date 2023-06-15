@@ -12,8 +12,6 @@ public class PedestrianAIController : MonoBehaviour
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-
-        //Set destination
     }
 
     // Update is called once per frame

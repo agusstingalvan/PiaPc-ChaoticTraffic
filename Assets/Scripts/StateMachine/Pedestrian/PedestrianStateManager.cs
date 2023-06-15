@@ -8,6 +8,7 @@ public class PedestrianStateManager : MonoBehaviour
     public PedestrianBaseState _currentState;
     public PedestrianStateGoing _stateGoing = new PedestrianStateGoing();
     public PedestrianStateWaiting _stateWaiting = new PedestrianStateWaiting();
+    public PedestrianStatePatience _statePatience = new PedestrianStatePatience();
 
     [HideInInspector]
     public NavMeshAgent agent;
@@ -25,6 +26,7 @@ public class PedestrianStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _currentState.UpdateState(this);
     }
 
     private void OnTriggerEnter(Collider other)

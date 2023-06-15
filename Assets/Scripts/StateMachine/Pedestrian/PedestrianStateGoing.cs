@@ -9,6 +9,7 @@ public class PedestrianStateGoing : PedestrianBaseState
         type = "going";
         pedestrianStateManager.agent.isStopped = false;
         pedestrianStateManager.agent.speed = 3;
+        pedestrianStateManager.transform.GetComponentInChildren<MeshRenderer>().material.color = new Color(210f / 255f, 138f / 255f, 231f / 255f, 1f);
     }
     public override void UpdateState(PedestrianStateManager pedestrianStateManager)
     {

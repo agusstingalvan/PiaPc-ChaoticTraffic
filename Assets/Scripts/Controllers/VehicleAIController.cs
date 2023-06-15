@@ -45,9 +45,6 @@ public class VehicleAIController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null && (other.name == "stick" || other.CompareTag("Waypoint"))) {
-
-        }
         //Si el jugador llega al waypoint
         if (other != null && other.CompareTag("Waypoint") && other.GetComponent<Waypoint>().address == _currentDirection)
         {

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e2ed2d3d664ac6b49afea42d56723898, type: 2}
+  - {fileID: 2100000, guid: fe312df7de7c5d04aa797480e23e5036, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   - {fileID: 5959372346024155472, guid: d59e302539ea5de478cb21bd970398ae, type: 3}
   - {fileID: 2298857381129850181, guid: ae9d0ab1d5fbcae49859e3e6121d8b97, type: 3}
   initialDirection: sourth
+  mySpawn: {fileID: 0}
   hasCollided: 0
 --- !u!114 &1634486030
 MonoBehaviour:
