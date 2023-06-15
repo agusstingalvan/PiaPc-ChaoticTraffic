@@ -72,6 +72,20 @@ public class VehicleAIController : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
+            if (collision != null && collision.transform.CompareTag("Pedestrian"))
+            {
+
+                _gameManager.totalCrashes = 0;
+                _gameManager._uiManager.UpdateLives(_gameManager.totalCrashes);
+
+                if (_gameManager.totalCrashes == 0)
+                {
+                    _gameManager.gameOver = true;
+                    return;
+                }
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+            }
         }
 
         if(collision != null && collision.transform.CompareTag("Pedestrian"))

@@ -32,7 +32,6 @@ public class VehicleStateReviewing : VehicleBaseState
         {
             if (vehicleStateManager._currentState.type == "reviewing")
             {
-                Debug.Log("Saliendo");
                 vehicleStateManager._currentState = vehicleStateManager._stateGoing;
                 vehicleStateManager._currentState.EnterState(vehicleStateManager);
             }
