@@ -21,7 +21,8 @@ public class VehicleAIController : MonoBehaviour
     string _currentDirection;
 
     GameManager _gameManager;
-
+    [HideInInspector]
+    public SpawnVehicle mySpawn;
     [SerializeField]
     public bool hasCollided = false;
     void Start()
@@ -50,6 +51,8 @@ public class VehicleAIController : MonoBehaviour
         //Si el jugador llega al waypoint
         if (other != null && other.CompareTag("Waypoint") && other.GetComponent<Waypoint>().address == _currentDirection)
         {
+            GameObject.Find(mySpawn.name).GetComponent<SpawnVehicle>().countSpawnVehicles--;
+            GameObject.Find(mySpawn.name).GetComponent<SpawnVehicle>().vehicleInstanceReference = null;
             Destroy(gameObject);
         }
     }
@@ -90,7 +93,6 @@ public class VehicleAIController : MonoBehaviour
 
         if(collision != null && collision.transform.CompareTag("Pedestrian"))
         {
-            Debug.Log("Colision");
             hasCollided = true;
         }
     }

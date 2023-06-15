@@ -13,8 +13,11 @@ public class VehicleStateGoing : VehicleBaseState
 
         //Detectar si hay vehiculo delante y guardar la referencias, para luego en el estado waiting, poder reanudar la marcha.
         RaycastHit hit;
-        
-        if (Physics.Raycast(vehicleStateManager.transform.position, vehicleStateManager.transform.forward, out hit, 3f, vehicleStateManager.layerMaskCollider))
+        // Dibujar el raycast en la escena para depuración
+        Debug.DrawRay(vehicleStateManager.transform.position, vehicleStateManager.transform.forward * 8f, Color.red);
+
+
+        if (Physics.Raycast(vehicleStateManager.transform.position, vehicleStateManager.transform.forward, out hit, 8f, vehicleStateManager.layerMaskCollider))
         {
             if (hit.collider != null)
             {
@@ -24,8 +27,33 @@ public class VehicleStateGoing : VehicleBaseState
                     // Detener el vehículo y guardar la referencia al vehículo del otro de adelante
                     vehicleStateManager.haveVehicleInFront = hit.collider.transform;
 
-                    vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
-                    vehicleStateManager._currentState.EnterState(vehicleStateManager);
+                    //vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
+                    //vehicleStateManager._currentState.EnterState(vehicleStateManager);
+
+                    float distanceToVehicle = Vector3.Distance(vehicleStateManager.transform.position, vehicleStateManager.haveVehicleInFront.position);
+                 
+                    //Velocidad inicial es de 3.5f;
+                    if(distanceToVehicle < 7)
+                    {
+                        vehicleStateManager.agent.speed = 3f;
+                    }
+                    if(distanceToVehicle < 6)
+                    {
+                        vehicleStateManager.agent.speed = 2f;
+                    }
+                    if (distanceToVehicle < 5)
+                    {
+                        vehicleStateManager.agent.speed = .8f;
+                    }
+                    if (distanceToVehicle < 4)
+                    {
+                        vehicleStateManager.agent.speed = 0.5f;
+                    }
+                    if (distanceToVehicle <= 3)
+                    {
+                        vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
+                        vehicleStateManager._currentState.EnterState(vehicleStateManager);
+                    }
                 }
             }
         }

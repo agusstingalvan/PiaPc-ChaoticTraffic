@@ -11,6 +11,7 @@ public class VehicleStateManager : MonoBehaviour
     public VehicleStateReviewing _stateReviewing = new VehicleStateReviewing();
     public VehicleStateWaiting _stateWaiting = new VehicleStateWaiting();
     public VehicleAIController _controller;
+
     [SerializeField]
     public LayerMask layerMaskCollider;
 
