@@ -10,7 +10,7 @@ public class VehicleStateManager : MonoBehaviour
     public VehicleStateGoing _stateGoing = new VehicleStateGoing();
     public VehicleStateReviewing _stateReviewing = new VehicleStateReviewing();
     public VehicleStateWaiting _stateWaiting = new VehicleStateWaiting();
-    public VehicleStatePatience _statePatience = new VehicleStatePatience();
+    //public VehicleStatePatience _statePatience = new VehicleStatePatience();
 
     public VehicleAIController _controller;
 

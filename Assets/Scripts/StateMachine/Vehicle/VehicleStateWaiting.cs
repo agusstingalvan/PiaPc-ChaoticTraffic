@@ -35,13 +35,6 @@ public class VehicleStateWaiting : VehicleBaseState
             }
         }
 
-        time += Time.deltaTime;
-        if (time > 5f)
-        {
-            vehicleStateManager.transform.Find("conito").gameObject.SetActive(true);
-            //vehicleStateManager._currentState = vehicleStateManager._statePatience;
-            //vehicleStateManager._currentState.EnterState(vehicleStateManager);
-        }
     }
 
     public override void OnTriggerEnter(VehicleStateManager vehicleStateManager, Collider other)

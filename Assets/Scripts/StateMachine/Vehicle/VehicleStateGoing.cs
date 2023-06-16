@@ -27,9 +27,6 @@ public class VehicleStateGoing : VehicleBaseState
                     // Detener el vehículo y guardar la referencia al vehículo del otro de adelante
                     vehicleStateManager.haveVehicleInFront = hit.collider.transform;
 
-                    //vehicleStateManager._currentState = vehicleStateManager._stateWaiting;
-                    //vehicleStateManager._currentState.EnterState(vehicleStateManager);
-
                     float distanceToVehicle = Vector3.Distance(vehicleStateManager.transform.position, vehicleStateManager.haveVehicleInFront.position);
                  
                     //Velocidad inicial es de 3.5f;
