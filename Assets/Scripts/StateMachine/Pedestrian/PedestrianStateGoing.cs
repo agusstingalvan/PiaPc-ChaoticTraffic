@@ -21,7 +21,7 @@ public class PedestrianStateGoing : PedestrianBaseState
 
     public override void OnTriggerEnter(PedestrianStateManager pedestrianStateManager, Collider other)
     {
-        
+        //Trigger con el peaton
         if(other.transform.parent != null && other.transform.parent.CompareTag("TrafficLightPedestrian"))
         {
             TrafficPedestrianBase trafficPedestrianState = other.GetComponent<TrafficPedestrianManager>()._currentState;

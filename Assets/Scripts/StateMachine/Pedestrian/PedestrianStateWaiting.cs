@@ -14,6 +14,7 @@ public class PedestrianStateWaiting : PedestrianBaseState
     }
     public override void UpdateState(PedestrianStateManager pedestrianStateManager)
     {
+        //logica difusa para cambiar al estado de patience, visualmente su textura.
         time += Time.deltaTime;
         if (time >= 3f)
         {
